@@ -1,7 +1,7 @@
 // Business Logic
 
-function Player(number, roundPoints, gamePoints) {
-  this.number = number;
+function Player(id, roundPoints, gamePoints) {
+  this.id = id;
   this.roundPoints = roundPoints;
   this.gamePoints = gamePoints;
 }
@@ -12,8 +12,21 @@ $(document).ready(function () {
   let playerOne = new Player("One", 0, 0);
   let playerTwo = new Player("Two", 0, 0);
 
-  // Upon some button click..
-  $("#").submit(function (event) {
-    event.preventDefault();
+  let roundScore = 0;
+  let gameScore = 0;
+  // Upon button click..
+  $("#rollDie").click(function () {
+    let roll = Math.floor(Math.random() * 6 + 1);
+    if (roll === 1) {
+      console.log("Rolled a 1. Turn ends.");
+      console.log("Score this round was " + roundScore);
+    } else {
+      console.log("Rolled a " + roll + ".");
+      roundScore += roll;
+      console.log("Score this round is " + roundScore);
+    }
+  });
+  $("#holdEndTurn").click(function () {
+    console.log("End turn button clicked");
   });
 });
