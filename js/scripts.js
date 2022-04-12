@@ -36,6 +36,7 @@ $(document).ready(function () {
     let roll = Math.floor(Math.random() * 6 + 1);
     if (roll === 1) {
       console.log("Rolled a 1. Turn ends.");
+      currentPlayer = changePlayers(currentPlayer);
       console.log("Score this round was " + roundScore);
     } else {
       console.log("Rolled a " + roll + ".");
