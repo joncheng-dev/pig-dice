@@ -6,6 +6,10 @@ h3 {
   text-align: center;
 }
 
+p {
+  text-align: center;
+}
+
 .col-md-6 {
   border: dotted;
   border-width: 0.1em;
