@@ -10,11 +10,11 @@ function changePlayers(currentPlayer) {
   switch (currentPlayer) {
     case 1:
       currentPlayer = 2;
-      console.log("It is now Player " + currentPlayer + "'s turn.");
+      $("#playerTurn").html(currentPlayer);
       break;
     case 2:
       currentPlayer = 1;
-      console.log("It is now Player " + currentPlayer + "'s turn.");
+      $("#playerTurn").html(currentPlayer);
       break;
   }
   return currentPlayer;
@@ -26,10 +26,7 @@ $(document).ready(function () {
   let playerOne = new Player("One", 0, 0);
   let playerTwo = new Player("Two", 0, 0);
   let currentPlayer = 1;
-
-  let roundScore = 0;
-  let gameScore = 0;
-
+  $("#playerTurn").html(currentPlayer);
   // Upon button click..
   $("#rollDie").click(function () {
     let roll = Math.floor(Math.random() * 6 + 1);
@@ -76,9 +73,17 @@ $(document).ready(function () {
   });
   // Click for current player to end turn.
   $("#endTurn").click(function () {
-    currentPlayer = changePlayers(currentPlayer);
     if (currentPlayer === 1) {
-      console.log("P.1 Round Points");
+      console.log("Score this round was " + playerOne.roundPoints);
+      playerOne.gamePoints = playerOne.gamePoints + playerOne.roundPoints;
+      playerOne.roundPoints = 0;
+      console.log("P.1 Total game points: " + playerOne.gamePoints);
+    } else if (currentPlayer === 2) {
+      console.log("Score this round was " + playerTwo.roundPoints);
+      playerTwo.gamePoints = playerTwo.gamePoints + playerTwo.roundPoints;
+      playerTwo.roundPoints = 0;
+      console.log("P.2 Total game points: " + playerTwo.gamePoints);
     }
+    currentPlayer = changePlayers(currentPlayer);
   });
 });
