@@ -1,7 +1,5 @@
 // Business Logic
-
-function Player(id, roundPoints, gamePoints) {
-  this.id = id;
+function Player(roundPoints, gamePoints) {
   this.roundPoints = roundPoints;
   this.gamePoints = gamePoints;
 }
@@ -23,8 +21,8 @@ function changePlayers(currentPlayer) {
 // User Interface Logic
 $(document).ready(function () {
   // Players initialize to start game.
-  let playerOne = new Player("One", 0, 0);
-  let playerTwo = new Player("Two", 0, 0);
+  let playerOne = new Player(0, 0);
+  let playerTwo = new Player(0, 0);
   let currentPlayer = 1;
   $("#playerTurn").html(currentPlayer);
   $("#p1Total").html(playerOne.gamePoints);
@@ -32,67 +30,48 @@ $(document).ready(function () {
   // Upon button click..
   $("#rollDie").click(function () {
     let roll = Math.floor(Math.random() * 6 + 1);
+    $("#currentRoll").html(roll);
     // If the roll was a 1..
     if (roll === 1) {
-      console.log("Rolled a 1. Turn ends.");
+      $("#currentRoll").html(roll + ". Turn ends.");
       if (currentPlayer === 1) {
-        console.log("Score this round was " + playerOne.roundPoints);
         $("#roundPoints").html(playerOne.roundPoints);
         playerOne.gamePoints = playerOne.gamePoints + playerOne.roundPoints;
         $("#p1Total").html(playerOne.gamePoints);
         playerOne.roundPoints = 0;
-        console.log("P.1 Total game points: " + playerOne.gamePoints);
+        $("#roundPoints").html(0);
       } else if (currentPlayer === 2) {
-        console.log("Score this round was " + playerTwo.roundPoints);
         $("#roundPoints").html(playerTwo.roundPoints);
         playerTwo.gamePoints = playerTwo.gamePoints + playerTwo.roundPoints;
         $("#p2Total").html(playerTwo.gamePoints);
         playerTwo.roundPoints = 0;
-        console.log("P.2 Total game points: " + playerTwo.gamePoints);
+        $("#roundPoints").html(0);
       }
       currentPlayer = changePlayers(currentPlayer);
     }
     // If the roll was NOT 1
     else {
-      console.log("Rolled a " + roll + ".");
       if (currentPlayer === 1) {
         playerOne.roundPoints += roll;
+        $("#roundPoints").html(playerOne.roundPoints);
       } else if (currentPlayer === 2) {
         playerTwo.roundPoints += roll;
-      }
-      if (currentPlayer === 1) {
-        $("#roundPoints").html(playerOne.roundPoints);
-        console.log(
-          "Current Points this round for P." +
-            currentPlayer +
-            " is " +
-            playerOne.roundPoints
-        );
-      } else if (currentPlayer === 2) {
         $("#roundPoints").html(playerTwo.roundPoints);
-        console.log(
-          "Current Points this round for P." +
-            currentPlayer +
-            " is " +
-            playerTwo.roundPoints
-        );
       }
     }
   });
   // Click for current player to end turn.
   $("#endTurn").click(function () {
     if (currentPlayer === 1) {
-      console.log("Score this round was " + playerOne.roundPoints);
       playerOne.gamePoints = playerOne.gamePoints + playerOne.roundPoints;
       $("#p1Total").html(playerOne.gamePoints);
       playerOne.roundPoints = 0;
-      console.log("P.1 Total game points: " + playerOne.gamePoints);
+      $("#roundPoints").html(0);
     } else if (currentPlayer === 2) {
-      console.log("Score this round was " + playerTwo.roundPoints);
       playerTwo.gamePoints = playerTwo.gamePoints + playerTwo.roundPoints;
       $("#p2Total").html(playerTwo.gamePoints);
       playerTwo.roundPoints = 0;
-      console.log("P.2 Total game points: " + playerTwo.gamePoints);
+      $("#roundPoints").html(0);
     }
     currentPlayer = changePlayers(currentPlayer);
   });
