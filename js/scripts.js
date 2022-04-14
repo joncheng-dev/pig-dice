@@ -27,6 +27,8 @@ $(document).ready(function () {
   let playerTwo = new Player("Two", 0, 0);
   let currentPlayer = 1;
   $("#playerTurn").html(currentPlayer);
+  $("#p1Total").html(playerOne.gamePoints);
+  $("#p2Total").html(playerTwo.gamePoints);
   // Upon button click..
   $("#rollDie").click(function () {
     let roll = Math.floor(Math.random() * 6 + 1);
@@ -35,12 +37,16 @@ $(document).ready(function () {
       console.log("Rolled a 1. Turn ends.");
       if (currentPlayer === 1) {
         console.log("Score this round was " + playerOne.roundPoints);
+        $("#roundPoints").html(playerOne.roundPoints);
         playerOne.gamePoints = playerOne.gamePoints + playerOne.roundPoints;
+        $("#p1Total").html(playerOne.gamePoints);
         playerOne.roundPoints = 0;
         console.log("P.1 Total game points: " + playerOne.gamePoints);
       } else if (currentPlayer === 2) {
         console.log("Score this round was " + playerTwo.roundPoints);
+        $("#roundPoints").html(playerTwo.roundPoints);
         playerTwo.gamePoints = playerTwo.gamePoints + playerTwo.roundPoints;
+        $("#p2Total").html(playerTwo.gamePoints);
         playerTwo.roundPoints = 0;
         console.log("P.2 Total game points: " + playerTwo.gamePoints);
       }
@@ -55,6 +61,7 @@ $(document).ready(function () {
         playerTwo.roundPoints += roll;
       }
       if (currentPlayer === 1) {
+        $("#roundPoints").html(playerOne.roundPoints);
         console.log(
           "Current Points this round for P." +
             currentPlayer +
@@ -62,6 +69,7 @@ $(document).ready(function () {
             playerOne.roundPoints
         );
       } else if (currentPlayer === 2) {
+        $("#roundPoints").html(playerTwo.roundPoints);
         console.log(
           "Current Points this round for P." +
             currentPlayer +
@@ -76,11 +84,13 @@ $(document).ready(function () {
     if (currentPlayer === 1) {
       console.log("Score this round was " + playerOne.roundPoints);
       playerOne.gamePoints = playerOne.gamePoints + playerOne.roundPoints;
+      $("#p1Total").html(playerOne.gamePoints);
       playerOne.roundPoints = 0;
       console.log("P.1 Total game points: " + playerOne.gamePoints);
     } else if (currentPlayer === 2) {
       console.log("Score this round was " + playerTwo.roundPoints);
       playerTwo.gamePoints = playerTwo.gamePoints + playerTwo.roundPoints;
+      $("#p2Total").html(playerTwo.gamePoints);
       playerTwo.roundPoints = 0;
       console.log("P.2 Total game points: " + playerTwo.gamePoints);
     }
