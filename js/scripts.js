@@ -4,6 +4,11 @@ function Player(roundPoints, gamePoints) {
   this.gamePoints = gamePoints;
 }
 
+Player.prototype.startNewGame = function () {
+  this.roundPoints = 0;
+  this.gamePoints = 0;
+};
+
 Player.prototype.endTurn = function () {
   this.gamePoints = this.gamePoints + this.roundPoints;
   this.roundPoints = 0;
@@ -11,20 +16,17 @@ Player.prototype.endTurn = function () {
   $("#currentRoll").html("--");
 };
 
-Player.prototype.startNewGame = function () {
-  this.roundPoints = 0;
-  this.gamePoints = 0;
-};
-
 function changePlayers(currentPlayer) {
   switch (currentPlayer) {
     case 1:
       currentPlayer = 2;
       $("#playerTurn").html(currentPlayer);
+      playerTurnIndicator.style.backgroundColor = "#7897ab";
       break;
     case 2:
       currentPlayer = 1;
       $("#playerTurn").html(currentPlayer);
+      playerTurnIndicator.style.backgroundColor = "#d885a3";
       break;
   }
   return currentPlayer;
@@ -36,6 +38,7 @@ $(document).ready(function () {
   let playerOne = new Player(0, 0);
   let playerTwo = new Player(0, 0);
   let currentPlayer = 1;
+  playerTurnIndicator.style.backgroundColor = "#d885a3";
   $("#playerTurn").html(currentPlayer);
   $("#p1Total").html(playerOne.gamePoints);
   $("#p2Total").html(playerTwo.gamePoints);

@@ -1,3 +1,8 @@
+body {
+  color: #383838;
+  background-color: #fdceb9;
+}
+
 h1 {
   text-align: center;
 }
@@ -9,6 +14,11 @@ h3 {
 
 p {
   text-align: center;
+  font-size: 1.5rem;
+}
+
+.jumbotron {
+  background-color: #655d8a;
 }
 
 .col-md-6 {
@@ -16,4 +26,25 @@ p {
   border-width: 0.1em;
   border-color: black;
   text-align: center;
+}
+
+.btn {
+  background-color: aliceblue;
+}
+
+#p1Name,
+#p1Total,
+#p2Name,
+#p2Total,
+#currentRoll,
+#roundPoints {
+  font-size: 1.5rem;
+}
+
+#p1Score {
+  background-color: #d885a3;
+}
+
+#p2Score {
+  background-color: #7897ab;
 }
