@@ -12,14 +12,19 @@
       <div class="jumbotron">
         <h1>Pig Dice</h1>
       </div>
+      <button type="button" id="startNewGame">New Game</button>
       <div class="row">
         <div class="col-md-6">
           <h3>Player 1</h3>
+          <br />
+          <h4><span id="p1Name"></span></h4>
           <br />
           <h5>Total Points: <span id="p1Total"></span></h5>
         </div>
         <div class="col-md-6">
           <h3>Player 2</h3>
+          <br />
+          <h4><span id="p2Name"></span></h4>
           <br />
           <h5>Total Points: <span id="p2Total"></span></h5>
         </div>
@@ -31,8 +36,22 @@
           <h3>Player <span id="playerTurn"></span>'s Turn</h3>
           <div class="row">
             <div class="col-md-12">
-              <p>Rolled: <span id="currentRoll"></span></p>
-              <p>Points This Round: <span id="roundPoints"></span></p>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>Rolled:</p>
+                </div>
+                <div class="col-md-6">
+                  <span id="currentRoll"></span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>Points This Round:</p>
+                </div>
+                <div class="col-md-6">
+                  <span id="roundPoints"></span>
+                </div>
+              </div>
             </div>
           </div>
           <div class="row">

@@ -7,6 +7,13 @@ function Player(roundPoints, gamePoints) {
 Player.prototype.endTurn = function () {
   this.gamePoints = this.gamePoints + this.roundPoints;
   this.roundPoints = 0;
+  $("#roundPoints").html(this.roundPoints);
+  $("#currentRoll").html("--");
+};
+
+Player.prototype.startNewGame = function () {
+  this.roundPoints = 0;
+  this.gamePoints = 0;
 };
 
 function changePlayers(currentPlayer) {
@@ -32,27 +39,34 @@ $(document).ready(function () {
   $("#playerTurn").html(currentPlayer);
   $("#p1Total").html(playerOne.gamePoints);
   $("#p2Total").html(playerTwo.gamePoints);
-  // Upon button click..
+
+  $("#startNewGame").click(function () {
+    playerOne.startNewGame();
+    playerTwo.startNewGame();
+    $("#p1Total").html(playerOne.gamePoints);
+    $("#p2Total").html(playerTwo.gamePoints);
+    $("#currentRoll").html("--");
+    $("#roundPoints").html(0);
+  });
+
   $("#rollDie").click(function () {
     let roll = Math.floor(Math.random() * 6 + 1);
     $("#currentRoll").html(roll);
+    // If the roll is 1
     if (roll === 1) {
       if (currentPlayer === 1) {
-        $("#roundPoints").html(playerOne.roundPoints);
+        playerOne.roundPoints = 0;
         playerOne.endTurn();
         $("#p1Total").html(playerOne.gamePoints);
-        $("#roundPoints").html(playerOne.roundPoints);
       } else if (currentPlayer === 2) {
-        $("#roundPoints").html(playerTwo.roundPoints);
+        playerTwo.roundPoints = 0;
         playerTwo.endTurn();
         $("#p2Total").html(playerTwo.gamePoints);
-        $("#roundPoints").html(playerTwo.roundPoints);
       }
       $("#currentRoll").html(roll + ". Turn ends.");
       currentPlayer = changePlayers(currentPlayer);
     }
-
-    // If the roll was NOT 1
+    // If the roll is NOT 1
     else {
       if (currentPlayer === 1) {
         playerOne.roundPoints += roll;
@@ -69,12 +83,10 @@ $(document).ready(function () {
       $("#roundPoints").html(playerOne.roundPoints);
       playerOne.endTurn();
       $("#p1Total").html(playerOne.gamePoints);
-      $("#roundPoints").html(playerOne.roundPoints);
     } else if (currentPlayer === 2) {
       $("#roundPoints").html(playerTwo.roundPoints);
       playerTwo.endTurn();
       $("#p2Total").html(playerTwo.gamePoints);
-      $("#roundPoints").html(playerTwo.roundPoints);
     }
     currentPlayer = changePlayers(currentPlayer);
   });
