@@ -7,13 +7,22 @@ function Player(roundPoints, gamePoints) {
 Player.prototype.startNewGame = function () {
   this.roundPoints = 0;
   this.gamePoints = 0;
+  $("#memo").html("");
+  $("#rollDie").attr("disabled", false);
+  $("#endTurn").attr("disabled", false);
 };
 
 Player.prototype.endTurn = function () {
   this.gamePoints = this.gamePoints + this.roundPoints;
   this.roundPoints = 0;
   $("#roundPoints").html(this.roundPoints);
-  $("#currentRoll").html("--");
+  $("#currentRoll").html("-");
+};
+
+Player.prototype.checkWinner = function () {
+  if (this.gamePoints >= 100) {
+    return true;
+  }
 };
 
 function changePlayers(currentPlayer) {
@@ -48,11 +57,12 @@ $(document).ready(function () {
     playerTwo.startNewGame();
     $("#p1Total").html(playerOne.gamePoints);
     $("#p2Total").html(playerTwo.gamePoints);
-    $("#currentRoll").html("--");
+    $("#currentRoll").html("-");
     $("#roundPoints").html(0);
   });
 
   $("#rollDie").click(function () {
+    $("#memo").html("");
     let roll = Math.floor(Math.random() * 6 + 1);
     $("#currentRoll").html(roll);
     // If the roll is 1
@@ -61,12 +71,13 @@ $(document).ready(function () {
         playerOne.roundPoints = 0;
         playerOne.endTurn();
         $("#p1Total").html(playerOne.gamePoints);
+        $("#memo").html("<strong>PLAYER 1:</strong> Rolled a 1. Turn ended.");
       } else if (currentPlayer === 2) {
         playerTwo.roundPoints = 0;
         playerTwo.endTurn();
         $("#p2Total").html(playerTwo.gamePoints);
+        $("#memo").html("<strong>PLAYER 2:</strong> Rolled a 1. Turn ended.");
       }
-      $("#currentRoll").html(roll + ". Turn ends.");
       currentPlayer = changePlayers(currentPlayer);
     }
     // If the roll is NOT 1
@@ -86,10 +97,20 @@ $(document).ready(function () {
       $("#roundPoints").html(playerOne.roundPoints);
       playerOne.endTurn();
       $("#p1Total").html(playerOne.gamePoints);
+      if (playerOne.checkWinner()) {
+        $("#memo").html("<strong>PLAYER 1</strong> wins!");
+        $("#rollDie").attr("disabled", true);
+        $("#endTurn").attr("disabled", true);
+      }
     } else if (currentPlayer === 2) {
       $("#roundPoints").html(playerTwo.roundPoints);
       playerTwo.endTurn();
       $("#p2Total").html(playerTwo.gamePoints);
+      if (playerTwo.checkWinner()) {
+        $("#memo").html("<strong>PLAYER 2</strong> wins!");
+        $("#rollDie").attr("disabled", true);
+        $("#endTurn").attr("disabled", true);
+      }
     }
     currentPlayer = changePlayers(currentPlayer);
   });
