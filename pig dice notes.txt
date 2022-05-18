@@ -1,0 +1,96 @@
+PIG DICE:
+-----------------------
+Two player game.
+
+Each turn, a player repeatedly rolls a die until either a 1 is rolled, or the player decides to hold.
+
+if player rolls a 2,3,4,5,6 
+-- the number gets added to their score. The player can choose to roll again.
+
+if player rolls a 1 
+-- they score nothing, and their turn ends.
+
+if a player chooses to hold, 
+their turn total is added to the score, and it becomes the next player's turn.
+
+First player to score 100 wins.
+-----------------------
+
+SPECIFICATIONS
+
+click a button to roll the die.
+click a button to hold & end the turn.
+
+Banner that states player's turn.
+
+Column on left that shows Player 1's current total
+Column on right that shows Player 2's current total
+
+button: dice roll -- randomizes an integer number 1-6
+
+function takes dice roll... and decides what to do.
+if (roll === 1), roundTotal = 0. Turn ends.
+if (roll != 1), roundTotal += roll. Choice:reroll/hold
+
+-----------------------
+TESTING
+-----------------------
+PASS
+click a button, and console log a random number 1-6.
+
+PASS
+click the roll die button, and console log current round total score.
+
+PASS
+upon clicking end turn button, change players. Console log this.
+
+PASS
+put this into a function.
+
+PASS
+use the user interface to switch between whose score to keep (player 1 or player 2)
+
+PASS
+update the TOTAL game points for current player when round ends. Also clear round points before changing players.
+
+PASS
+switch between player 1 and player 2's score to keep. 
+
+PASS
+Show whose turn it is on html page
+
+PASS
+Show current points on html page
+
+PASS
+Show total points on html page
+
+PASS
+clicking "end turn" zeroes the points this round
+
+PASS
+refactor code to create an end turn function 
+
+PASS
+visually clarify user interface on html
+-> button for "New Game"
+
+PASS
+add conditions for a player to be winner when points >=100
+
+PASS
+display this to html. This ends the game. 
+
+-----------------------
+
+
+
+
+
+
+
+
+
+
+
+
