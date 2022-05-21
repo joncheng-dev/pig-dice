@@ -1,30 +1,7 @@
-// Business Logic
-function Player(roundPoints, gamePoints) {
-  this.roundPoints = roundPoints;
-  this.gamePoints = gamePoints;
-}
+import "./css/styles.css";
+import Player from "./dice.js";
 
-Player.prototype.startNewGame = function () {
-  this.roundPoints = 0;
-  this.gamePoints = 0;
-  $("#memo").html("");
-  $("#rollDie").attr("disabled", false);
-  $("#endTurn").attr("disabled", false);
-};
-
-Player.prototype.endTurn = function () {
-  this.gamePoints = this.gamePoints + this.roundPoints;
-  this.roundPoints = 0;
-  $("#roundPoints").html(this.roundPoints);
-  $("#currentRoll").html("-");
-};
-
-Player.prototype.checkWinner = function () {
-  if (this.gamePoints >= 100) {
-    return true;
-  }
-};
-
+// User Interface Logic
 function changePlayers(currentPlayer) {
   switch (currentPlayer) {
     case 1:
@@ -41,7 +18,6 @@ function changePlayers(currentPlayer) {
   return currentPlayer;
 }
 
-// User Interface Logic
 $(document).ready(function () {
   // Players initialize to start game.
   let playerOne = new Player(0, 0);
