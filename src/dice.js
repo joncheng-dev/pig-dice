@@ -25,5 +25,4 @@ Player.prototype.checkWinner = function () {
   if (this.gamePoints >= 100) {
     return true;
   }
-  return "checkWinner method works.";
 };
