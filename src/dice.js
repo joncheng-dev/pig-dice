@@ -10,16 +10,15 @@ Player.prototype.startNewGame = function () {
   // $("#memo").html("");
   // $("#rollDie").attr("disabled", false);
   // $("#endTurn").attr("disabled", false);
-  return "startNewGame method works.";
 };
 
-// Player.prototype.endTurn = function () {
-//   this.gamePoints = this.gamePoints + this.roundPoints;
-//   this.roundPoints = 0;
-//   $("#roundPoints").html(this.roundPoints);
-//   $("#currentRoll").html("-");
-//   return "endTurn method works.";
-// };
+Player.prototype.endTurn = function () {
+  //   this.gamePoints = this.gamePoints + this.roundPoints;
+  //   this.roundPoints = 0;
+  //   $("#roundPoints").html(this.roundPoints);
+  //   $("#currentRoll").html("-");
+  return "Turn has been ended.";
+};
 
 // Player.prototype.checkWinner = function () {
 //   if (this.gamePoints >= 100) {
