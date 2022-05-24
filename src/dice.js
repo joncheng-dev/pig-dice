@@ -13,8 +13,8 @@ Player.prototype.startNewGame = function () {
 };
 
 Player.prototype.endTurn = function () {
-  //   this.gamePoints = this.gamePoints + this.roundPoints;
-  //   this.roundPoints = 0;
+  this.gamePoints = this.gamePoints + this.roundPoints;
+  this.roundPoints = 0;
   //   $("#roundPoints").html(this.roundPoints);
   //   $("#currentRoll").html("-");
   return "Turn has been ended.";

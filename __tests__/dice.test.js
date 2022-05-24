@@ -14,6 +14,10 @@ describe("Player", () => {
   });
   test("should correctly end the turn by tallying up round points into player's total game points", () => {
     const addRoundPointstoTotal = new Player(5, 10);
-    expect(addRoundPointstoTotal.endTurn()).toEqual("Turn has been ended.");
+    expect(addRoundPointstoTotal.roundPoints).toEqual(5);
+    expect(addRoundPointstoTotal.gamePoints).toEqual(10);
+    addRoundPointstoTotal.endTurn();
+    expect(addRoundPointstoTotal.roundPoints).toEqual(0);
+    expect(addRoundPointstoTotal.gamePoints).toEqual(15);
   });
 });
