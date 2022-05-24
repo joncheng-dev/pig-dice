@@ -20,8 +20,8 @@ Player.prototype.endTurn = function () {
   return "Turn has been ended.";
 };
 
-// Player.prototype.checkWinner = function () {
-//   if (this.gamePoints >= 100) {
-//     return true;
-//   }
-// };
+Player.prototype.checkWinner = function () {
+  if (this.gamePoints >= 100) {
+    return true;
+  }
+};

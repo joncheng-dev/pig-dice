@@ -20,4 +20,8 @@ describe("Player", () => {
     expect(addRoundPointstoTotal.roundPoints).toEqual(0);
     expect(addRoundPointstoTotal.gamePoints).toEqual(15);
   });
+  test("should correctly check if the Player is the winner of the game -- 100 or more gamePoints.", () => {
+    const gameWinner = new Player(0, 101);
+    expect(gameWinner.checkWinner()).toEqual(true);
+  });
 });
