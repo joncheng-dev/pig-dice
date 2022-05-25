@@ -7,17 +7,11 @@ export default function Player(roundPoints, gamePoints) {
 Player.prototype.startNewGame = function () {
   this.roundPoints = 0;
   this.gamePoints = 0;
-  // $("#memo").html("");
-  // $("#rollDie").attr("disabled", false);
-  // $("#endTurn").attr("disabled", false);
 };
 
-Player.prototype.endTurn = function () {
+Player.prototype.tallyPoints = function () {
   this.gamePoints = this.gamePoints + this.roundPoints;
   this.roundPoints = 0;
-  //   $("#roundPoints").html(this.roundPoints);
-  //   $("#currentRoll").html("-");
-  return "Turn has been ended.";
 };
 
 Player.prototype.checkWinner = function () {
