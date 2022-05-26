@@ -35,7 +35,6 @@ function endTurn(currentPlayer, player) {
   $("#roundPoints").html(player.roundPoints);
   player.tallyPoints();
   $("#currentRoll").html("-");
-  $("#roundPoints").html(player.roundPoints);
   if (currentPlayer === 1) {
     $("#p1Total").html(player.gamePoints);
   } else {
@@ -108,9 +107,14 @@ $(document).ready(function () {
     $("#rollDie").attr("disabled", false);
     if (currentPlayer === 1) {
       endTurn(currentPlayer, playerOne);
+      if (!playerOne.checkWinner()) {
+        currentPlayer = changePlayers(currentPlayer);
+      }
     } else if (currentPlayer === 2) {
       endTurn(currentPlayer, playerTwo);
+      if (!playerTwo.checkWinner()) {
+        currentPlayer = changePlayers(currentPlayer);
+      }
     }
-    currentPlayer = changePlayers(currentPlayer);
   });
 });
