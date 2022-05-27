@@ -16,12 +16,14 @@ describe("Player", () => {
     const addRoundPointstoTotal = new Player(5, 10);
     expect(addRoundPointstoTotal.roundPoints).toEqual(5);
     expect(addRoundPointstoTotal.gamePoints).toEqual(10);
-    addRoundPointstoTotal.endTurn();
+    addRoundPointstoTotal.tallyPoints();
     expect(addRoundPointstoTotal.roundPoints).toEqual(0);
     expect(addRoundPointstoTotal.gamePoints).toEqual(15);
   });
   test("should correctly check if the Player is the winner of the game -- 100 or more gamePoints.", () => {
-    const gameWinner = new Player(0, 101);
+    const gameWinner = new Player(0, 111);
     expect(gameWinner.checkWinner()).toEqual(true);
+    const gameNotWinner = new Player(0, 90);
+    expect(gameNotWinner.checkWinner()).toEqual(false);
   });
 });
